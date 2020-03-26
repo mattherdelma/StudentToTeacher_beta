@@ -1,0 +1,112 @@
+<html>
+<head>
+<title>index.jsp</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #a9b7c6;}
+.s1 { color: #cc7832; font-weight: bold;}
+.s2 { color: #a9b7c6;}
+.s3 { color: #6a8759;}
+.s4 { color: #a9b7c6;}
+.s5 { color: #e8bf6a;}
+.s6 { color: #a9b7c6;}
+.s7 { color: #bababa;}
+.s8 { color: #a5c261;}
+.s9 { color: #cc7832;}
+.s10 { color: #6a8759;}
+.s11 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+index.jsp</font>
+</center></td></tr></table>
+<pre><span class="s0">&lt;%@ </span><span class="s1">page </span><span class="s2">import</span><span class="s0">=&quot;</span><span class="s3">java.util.List</span><span class="s0">&quot; %&gt;</span>
+<span class="s0">&lt;%@ </span><span class="s1">page </span><span class="s2">import</span><span class="s0">=&quot;</span><span class="s3">com.java.code.model.Administrators</span><span class="s0">&quot;%&gt;</span>
+<span class="s0">&lt;%@ </span><span class="s1">page </span><span class="s2">import</span><span class="s0">=&quot;</span><span class="s3">com.java.code.model.Teacher</span><span class="s0">&quot;%&gt;</span>
+<span class="s0">&lt;%@ </span><span class="s1">page </span><span class="s2">import</span><span class="s0">=&quot;</span><span class="s3">com.java.code.model.Student</span><span class="s0">&quot;%&gt;</span>
+<span class="s0">&lt;%@ </span><span class="s1">page </span><span class="s2">import</span><span class="s0">=&quot;</span><span class="s3">com.java.code.jdbc.LoginJdbc</span><span class="s0">&quot;%&gt;</span>
+<span class="s0">&lt;%@ </span><span class="s1">page </span><span class="s2">contentType</span><span class="s0">=&quot;</span><span class="s3">text/html;charset=UTF-8</span><span class="s0">&quot; </span><span class="s2">language</span><span class="s0">=&quot;</span><span class="s3">java</span><span class="s0">&quot;%&gt;</span>
+<span class="s5">&lt;html&gt;</span>
+<span class="s5">&lt;head&gt;</span>
+    <span class="s5">&lt;title&gt;</span><span class="s6">学生作业管理系统登录界面</span><span class="s5">&lt;/title&gt;</span>
+    <span class="s5">&lt;meta </span><span class="s7">http-equiv</span><span class="s8">=&quot;Content-Type&quot; </span><span class="s7">content</span><span class="s8">=&quot;text/html; charset=UTF-8&quot;</span><span class="s5">/&gt;</span>
+    <span class="s5">&lt;meta </span><span class="s7">name</span><span class="s8">=&quot;StudentHomeWorkManagerSystem&quot; </span><span class="s7">conten</span><span class="s8">=&quot;width=device-width,initial-scale=1&quot;</span><span class="s5">&gt;</span>
+    <span class="s5">&lt;link </span><span class="s7">type</span><span class="s8">=&quot;text/css&quot; </span><span class="s7">href</span><span class="s8">=&quot;css/Login1.css&quot; </span><span class="s7">rel</span><span class="s8">=&quot;stylesheet&quot;</span><span class="s5">/&gt;</span>
+    <span class="s5">&lt;link </span><span class="s7">type</span><span class="s8">=&quot;image/png&quot; </span><span class="s7">href</span><span class="s8">=&quot;../images/favicon.ico&quot; </span><span class="s7">rel</span><span class="s8">=&quot;shortcut icon&quot;</span><span class="s5">&gt;</span>
+    <span class="s5">&lt;link </span><span class="s7">rel</span><span class="s8">=&quot;stylesheet&quot; </span><span class="s7">href</span><span class="s8">=&quot;css/Login2.css&quot;</span><span class="s5">&gt;</span>
+    <span class="s5">&lt;script&gt;</span>
+        <span class="s9">if</span><span class="s6">(self!=top)</span>
+        <span class="s6">{</span>
+            <span class="s4">parent.location.href=</span><span class="s10">'index.html'</span><span class="s9">;</span>
+        <span class="s6">}</span>
+        <span class="s9">function </span><span class="s4">CheckLogin(obj){</span>
+            <span class="s9">if</span><span class="s6">(obj.username.value==</span><span class="s10">''</span><span class="s6">)</span>
+            <span class="s6">{</span>
+                <span class="s4">alert(</span><span class="s10">'请输入用户名'</span><span class="s6">)</span><span class="s9">;</span>
+                <span class="s4">obj.username.focus()</span><span class="s9">;</span>
+                <span class="s9">return false;</span>
+            <span class="s6">}</span>
+            <span class="s9">if</span><span class="s6">(obj.password.value==</span><span class="s10">''</span><span class="s6">)</span>
+            <span class="s6">{</span>
+                <span class="s4">alert(</span><span class="s10">'请输入登录密码'</span><span class="s6">)</span><span class="s9">;</span>
+                <span class="s4">obj.password.focus()</span><span class="s9">;</span>
+                <span class="s9">return false;</span>
+        <span class="s6">}</span>
+        <span class="s9">return true;</span>
+    <span class="s6">}</span>
+    <span class="s5">&lt;/script&gt;</span>
+<span class="s5">&lt;/head&gt;</span>
+<span class="s5">&lt;body&gt;</span>
+<span class="s5">&lt;div </span><span class="s7">class</span><span class="s8">=&quot;container&quot; </span><span class="s7">align</span><span class="s8">=&quot;center&quot;</span><span class="s5">&gt;</span>
+    <span class="s5">&lt;div </span><span class="s7">class</span><span class="s8">=&quot;col-md-6&quot; </span><span class="s7">style</span><span class="s8">=&quot;</span><span class="s7">margin-top</span><span class="s6">: </span><span class="s11">20</span><span class="s6">%</span><span class="s9">;</span><span class="s8">&quot;</span><span class="s5">&gt;</span>
+        <span class="s5">&lt;div </span><span class="s7">class</span><span class="s8">=&quot;inset&quot;</span><span class="s5">&gt;</span>
+            <span class="s5">&lt;form </span><span class="s7">name</span><span class="s8">=&quot;login&quot; </span><span class="s7">id</span><span class="s8">=&quot;login&quot; </span><span class="s7">method</span><span class="s8">=&quot;post&quot; </span><span class="s7">action</span><span class="s8">=&quot;/login&quot; </span><span class="s7">onSubmit</span><span class="s8">=&quot;</span><span class="s9">return </span><span class="s4">CheckLogin(document.login)</span><span class="s9">;</span><span class="s8">&quot;</span><span class="s5">&gt;</span>
+                <span class="s5">&lt;input </span><span class="s7">type</span><span class="s8">=&quot;hidden&quot; </span><span class="s7">name</span><span class="s8">=&quot;enews&quot; </span><span class="s7">value</span><span class="s8">=&quot;login&quot;</span><span class="s5">&gt;</span>
+                <span class="s5">&lt;div&gt;</span>
+                    <span class="s5">&lt;h2&gt;</span><span class="s6">学生作业管理系统</span><span class="s5">&lt;/h2&gt;</span>
+
+                    <span class="s5">&lt;span </span><span class="s7">style</span><span class="s8">=&quot;</span><span class="s7">text-align</span><span class="s6">: </span><span class="s8">left</span><span class="s9">;</span><span class="s7">text-indent</span><span class="s6">: </span><span class="s11">0.4</span><span class="s8">em</span><span class="s9">;</span><span class="s8">&quot;</span><span class="s5">&gt;&lt;img </span><span class="s7">src</span><span class="s8">=&quot;../images/UserName.png&quot;</span><span class="s5">&gt;&lt;label&gt;</span><span class="s6">用户名</span><span class="s5">&lt;/label&gt;&lt;/span&gt;</span>
+                    <span class="s5">&lt;span&gt;&lt;input </span><span class="s7">type</span><span class="s8">=&quot;text&quot; </span><span class="s7">name</span><span class="s8">=&quot;username&quot; </span><span class="s7">class</span><span class="s8">=&quot;textbox&quot; </span><span class="s5">&gt;&lt;/span&gt;</span>
+                <span class="s5">&lt;/div&gt;</span>
+                <span class="s5">&lt;div&gt;</span>
+
+                    <span class="s5">&lt;span </span><span class="s7">style</span><span class="s8">=&quot;</span><span class="s7">text-align</span><span class="s6">: </span><span class="s8">left</span><span class="s9">;</span><span class="s7">text-indent</span><span class="s6">: </span><span class="s11">0.4</span><span class="s8">em</span><span class="s9">;</span><span class="s8">&quot;</span><span class="s5">&gt;&lt;img </span><span class="s7">src</span><span class="s8">=&quot;../images/UserPassword.png&quot;</span><span class="s5">&gt;&lt;label&gt;</span><span class="s6">密码</span><span class="s5">&lt;/label&gt;&lt;/span&gt;</span>
+                    <span class="s5">&lt;span&gt;&lt;input  </span><span class="s7">name</span><span class="s8">=&quot;password&quot; </span><span class="s7">type</span><span class="s8">=&quot;password&quot; </span><span class="s7">class</span><span class="s8">=&quot;password&quot;</span><span class="s5">&gt;&lt;/span&gt;</span>
+                <span class="s5">&lt;/div&gt;</span>
+                <span class="s5">&lt;div&gt;</span>
+                    <span class="s5">&lt;span </span><span class="s7">style</span><span class="s8">=&quot;</span><span class="s7">text-align</span><span class="s6">:</span><span class="s8">left</span><span class="s9">;</span><span class="s7">text-indent</span><span class="s6">: </span><span class="s11">0.4</span><span class="s8">em</span><span class="s9">;</span><span class="s8">&quot;</span><span class="s5">&gt;&lt;label&gt;</span><span class="s6">请输入验证码&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp</span><span class="s5">&lt;/label&gt;&lt;img </span><span class="s7">src</span><span class="s8">=&quot;../images/UserTestPic.png&quot;</span><span class="s5">&gt;&lt;/span&gt;</span>
+                    <span class="s5">&lt;span&gt;&lt;input </span><span class="s7">name</span><span class="s8">=&quot;check&quot; </span><span class="s7">type</span><span class="s8">=&quot;text&quot; </span><span class="s7">class</span><span class="s8">=&quot;checkBox&quot; </span><span class="s5">&gt;&lt;/span&gt;</span>
+                <span class="s5">&lt;/div&gt;</span>
+                <span class="s5">&lt;div </span><span class="s7">style</span><span class="s8">=&quot;</span><span class="s7">padding-bottom</span><span class="s6">:</span><span class="s11">20</span><span class="s8">px</span><span class="s9">;</span><span class="s8">&quot;</span><span class="s5">&gt;</span>
+                    <span class="s5">&lt;label </span><span class="s7">class</span><span class="s8">=&quot;checkbox-inline&quot; </span><span class="s7">style</span><span class="s8">=&quot;</span><span class="s7">padding-left</span><span class="s6">:</span><span class="s11">0</span><span class="s8">px</span><span class="s9">;</span><span class="s7">color</span><span class="s6">:</span><span class="s8">blue</span><span class="s9">;</span><span class="s7">padding-right</span><span class="s6">:</span><span class="s11">10</span><span class="s8">px</span><span class="s9">;</span><span class="s8">&quot;</span><span class="s5">&gt;</span>
+                        <span class="s5">&lt;input </span><span class="s7">type</span><span class="s8">=&quot;radio&quot; </span><span class="s7">name</span><span class="s8">=&quot;optionsRadiosinline&quot; </span><span class="s7">id</span><span class="s8">=&quot;optionsRadios3&quot; </span><span class="s7">value</span><span class="s8">=&quot;option1&quot;</span><span class="s7">checked</span><span class="s5">&gt;</span><span class="s6">学生</span>
+                    <span class="s5">&lt;/label&gt;</span>
+                    <span class="s5">&lt;label </span><span class="s7">class</span><span class="s8">=&quot;checkbox-inline&quot; </span><span class="s7">style</span><span class="s8">=&quot;</span><span class="s7">padding-right</span><span class="s6">:</span><span class="s11">10</span><span class="s8">px</span><span class="s9">;</span><span class="s8">&quot;</span><span class="s5">&gt;</span>
+                        <span class="s5">&lt;input </span><span class="s7">type</span><span class="s8">=&quot;radio&quot; </span><span class="s7">name</span><span class="s8">=&quot;optionsRadiosinline&quot; </span><span class="s7">id</span><span class="s8">=&quot;optionsRadios4&quot; </span><span class="s7">value</span><span class="s8">=&quot;option2&quot;</span><span class="s5">&gt;</span><span class="s6">教师</span>
+                    <span class="s5">&lt;/label&gt;</span>
+                    <span class="s5">&lt;label </span><span class="s7">class</span><span class="s8">=&quot;checkbox-inline&quot;</span><span class="s5">&gt;</span>
+                        <span class="s5">&lt;input </span><span class="s7">type</span><span class="s8">=&quot;radio&quot; </span><span class="s7">name</span><span class="s8">=&quot;optionsRadiosinline&quot; </span><span class="s7">id</span><span class="s8">=&quot;optionsRadios5&quot; </span><span class="s7">value</span><span class="s8">=&quot;option3&quot;</span><span class="s5">&gt;</span><span class="s6">管理员</span>
+                    <span class="s5">&lt;/label&gt;</span>
+                <span class="s5">&lt;/div&gt;</span>
+                <span class="s5">&lt;div </span><span class="s7">class</span><span class="s8">=&quot;sign&quot;</span><span class="s5">&gt;</span>
+                    <span class="s5">&lt;input </span><span class="s7">type</span><span class="s8">=&quot;submit&quot; </span><span class="s7">value</span><span class="s8">=&quot;登录&quot; </span><span class="s7">class</span><span class="s8">=&quot;submit&quot; </span><span class="s5">/&gt;</span>
+                    <span class="s5">&lt;input </span><span class="s7">type</span><span class="s8">=&quot;reset&quot;  </span><span class="s7">class</span><span class="s8">=&quot;submit&quot; </span><span class="s7">value</span><span class="s8">=&quot;重置&quot;</span><span class="s5">/&gt;</span>
+                <span class="s5">&lt;/div&gt;</span>
+            <span class="s5">&lt;/form&gt;</span>
+        <span class="s5">&lt;/div&gt;</span>
+    <span class="s5">&lt;/div&gt;</span>
+<span class="s5">&lt;/div&gt;</span>
+
+<span class="s5">&lt;script&gt;</span>
+    <span class="s9">if</span><span class="s6">(document.login.equestion.value==</span><span class="s11">0</span><span class="s6">)</span>
+    <span class="s6">{</span>
+        <span class="s4">showanswer.style.display=</span><span class="s10">'none'</span><span class="s9">;</span>
+    <span class="s6">}</span>
+<span class="s5">&lt;/script&gt;</span>
+<span class="s5">&lt;/body&gt;</span>
+<span class="s5">&lt;/html&gt;</span></pre>
+</body>
+</html>
